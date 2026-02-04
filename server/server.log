@@ -1,0 +1,16 @@
+
+> server@1.0.0 start
+> node server.js
+
+Server listening on http://localhost:3000
+AuthApiError: Invalid login credentials
+    at handleError (/home/udom/Desktop/projects/tiny-blog/server/node_modules/@supabase/auth-js/dist/main/lib/fetch.js:66:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async _handleRequest (/home/udom/Desktop/projects/tiny-blog/server/node_modules/@supabase/auth-js/dist/main/lib/fetch.js:109:9)
+    at async _request (/home/udom/Desktop/projects/tiny-blog/server/node_modules/@supabase/auth-js/dist/main/lib/fetch.js:91:18)
+    at async SupabaseAuthClient.signInWithPassword (/home/udom/Desktop/projects/tiny-blog/server/node_modules/@supabase/auth-js/dist/main/GoTrueClient.js:419:23)
+    at async /home/udom/Desktop/projects/tiny-blog/server/server.js:64:29 {
+  __isAuthError: true,
+  status: 400,
+  code: 'invalid_credentials'
+}
