@@ -2,22 +2,22 @@
   <div id="app">
     <nav class="navbar">
       <div class="nav-brand">
-        <router-link to="/" class="brand-link">Tiny Blog</router-link>
+        <router-link to="/">Tiny Blog</router-link>
       </div>
       <div class="nav-links">
-        <router-link to="/" class="nav-link">Home</router-link>
-        <router-link to="/posts" class="nav-link">Posts</router-link>
+        <router-link to="/">Home</router-link>
+        <router-link to="/posts">Posts</router-link>
         <template v-if="user">
-          <router-link to="/create" class="nav-link">Create</router-link>
-          <button @click="logout" class="logout-btn">Logout</button>
+          <router-link to="/create">Create</router-link>
+          <button @click="logout">Logout</button>
         </template>
         <template v-else>
-          <router-link to="/login" class="nav-link">Login</router-link>
-          <router-link to="/register" class="nav-link">Register</router-link>
+          <router-link to="/login">Login</router-link>
+          <router-link to="/register">Register</router-link>
         </template>
       </div>
     </nav>
-    <main class="main-content">
+    <main>
       <router-view />
     </main>
   </div>
@@ -58,80 +58,77 @@ export default {
 }
 </script>
 
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  line-height: 1.6;
-  color: #333;
-}
-
+<style scoped>
 #app {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
 }
 
 .navbar {
-  background: #fff;
-  border-bottom: 1px solid #e5e7eb;
-  padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 2rem;
+  border-bottom: 1px solid #f0f0f0;
 }
 
-.nav-brand .brand-link {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #1f2937;
+.nav-brand a {
   text-decoration: none;
+  color: #333;
+  font-size: 1.125rem;
+  font-weight: 300;
 }
 
 .nav-links {
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
   align-items: center;
 }
 
-.nav-link {
-  color: #6b7280;
+.nav-links a {
   text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: 0.375rem;
-  transition: all 0.2s;
+  color: #666;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.nav-link:hover,
-.nav-link.router-link-active {
-  color: #1f2937;
-  background: #f3f4f6;
+.nav-links a:hover,
+.nav-links a.router-link-active {
+  color: #333;
 }
 
-.logout-btn {
-  background: #ef4444;
-  color: white;
+.nav-links button {
+  background: none;
   border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 0.375rem;
+  color: #666;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
   cursor: pointer;
-  transition: background 0.2s;
+  padding: 0;
 }
 
-.logout-btn:hover {
-  background: #dc2626;
+.nav-links button:hover {
+  color: #333;
 }
 
-.main-content {
-  flex: 1;
-  max-width: 1200px;
+main {
+  max-width: 680px;
   margin: 0 auto;
-  padding: 2rem;
-  width: 100%;
+  padding: 4rem 2rem;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem;
+  }
+  
+  .nav-links {
+    gap: 1rem;
+  }
+  
+  main {
+    padding: 2rem 1rem;
+  }
 }
 </style>

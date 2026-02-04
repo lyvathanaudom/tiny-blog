@@ -1,71 +1,46 @@
 <template>
   <div class="posts">
-    <div class="posts-header">
-      <h1>Blog Posts</h1>
-      <div class="posts-actions">
-        <div class="search-box">
-          <input
-            v-model="searchQuery"
-            type="text"
-            placeholder="Search posts..."
-            @input="handleSearch"
-          />
-        </div>
-        <router-link v-if="isAuthenticated" to="/create" class="btn btn-primary">
-          Create Post
-        </router-link>
+    <div class="header">
+      <h1>Posts</h1>
+      <div class="actions">
+        <input
+          v-model="searchQuery"
+          type="text"
+          placeholder="Search..."
+          @input="handleSearch"
+        />
+        <router-link v-if="isAuthenticated" to="/create">Create</router-link>
       </div>
     </div>
 
     <div v-if="loading" class="loading">
-      Loading posts...
+      Loading...
     </div>
 
-    <div v-else-if="posts.length === 0" class="empty-state">
+    <div v-else-if="posts.length === 0" class="empty">
       <p>No posts found.</p>
-      <router-link v-if="isAuthenticated" to="/create" class="btn btn-primary">
-        Create the first post
-      </router-link>
+      <router-link v-if="isAuthenticated && !searchQuery" to="/create">Create first post</router-link>
     </div>
 
-    <div v-else class="posts-grid">
-      <div v-for="post in posts" :key="post.id" class="post-card">
-        <div class="post-cover" v-if="post.cover">
-          <img :src="post.cover" :alt="post.title" />
+    <div v-else class="posts-list">
+      <article v-for="post in posts" :key="post.id" class="post">
+        <div class="post-meta">
+          <time>{{ formatDate(post.created_at) }}</time>
+          <span v-if="post.tag">{{ post.tag }}</span>
         </div>
-        <div class="post-content">
-          <h2 class="post-title">
-            <router-link :to="`/posts/${post.slug || post.id}`">
-              {{ post.title }}
-            </router-link>
-          </h2>
-          <p class="post-excerpt">{{ getExcerpt(post.content) }}</p>
-          <div class="post-meta">
-            <span class="post-date">{{ formatDate(post.created_at) }}</span>
-            <span v-if="post.tag" class="post-tag">{{ post.tag }}</span>
-          </div>
-        </div>
-      </div>
+        <h2>
+          <router-link :to="`/posts/${post.slug || post.id}`">
+            {{ post.title }}
+          </router-link>
+        </h2>
+        <p>{{ getExcerpt(post.content) }}</p>
+      </article>
     </div>
 
     <div v-if="totalPages > 1" class="pagination">
-      <button
-        :disabled="currentPage === 1"
-        @click="previousPage"
-        class="btn btn-secondary"
-      >
-        Previous
-      </button>
-      <span class="page-info">
-        Page {{ currentPage }} of {{ totalPages }}
-      </span>
-      <button
-        :disabled="currentPage === totalPages"
-        @click="nextPage"
-        class="btn btn-secondary"
-      >
-        Next
-      </button>
+      <button @click="previousPage" :disabled="currentPage === 1">Previous</button>
+      <span>{{ currentPage }} / {{ totalPages }}</span>
+      <button @click="nextPage" :disabled="currentPage === totalPages">Next</button>
     </div>
   </div>
 </template>
@@ -88,6 +63,33 @@ export default {
 
     const totalPages = computed(() => {
       return Math.ceil(totalPosts.value / pageSize.value)
+    })
+
+    const visiblePages = computed(() => {
+      const delta = 2
+      const range = []
+      const rangeWithDots = []
+      let l
+
+      for (let i = 1; i <= totalPages.value; i++) {
+        if (i === 1 || i === totalPages.value || (i >= currentPage.value - delta && i <= currentPage.value + delta)) {
+          range.push(i)
+        }
+      }
+
+      range.forEach((i) => {
+        if (l) {
+          if (i - l === 2) {
+            rangeWithDots.push(l + 1)
+          } else if (i - l !== 1) {
+            rangeWithDots.push('...')
+          }
+        }
+        rangeWithDots.push(i)
+        l = i
+      })
+
+      return rangeWithDots
     })
 
     const fetchPosts = async () => {
@@ -131,6 +133,13 @@ export default {
       }
     }
 
+    const goToPage = (page) => {
+      if (page !== '...' && page !== currentPage.value) {
+        currentPage.value = page
+        fetchPosts()
+      }
+    }
+
     const getExcerpt = (content) => {
       if (!content) return ''
       const plainText = content.replace(/<[^>]*>/g, '')
@@ -163,191 +172,177 @@ export default {
 
 <style scoped>
 .posts {
-  max-width: 1200px;
-  margin: 0 auto;
+  padding: 0;
 }
 
-.posts-header {
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
-  flex-wrap: wrap;
-  gap: 1rem;
+  margin-bottom: 3rem;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 2rem;
 }
 
-.posts-header h1 {
-  color: #1f2937;
+.header h1 {
+  font-size: 2rem;
+  font-weight: 300;
   margin: 0;
 }
 
-.posts-actions {
+.actions {
   display: flex;
   gap: 1rem;
   align-items: center;
 }
 
-.search-box input {
-  padding: 0.5rem 1rem;
-  border: 1px solid #d1d5db;
-  border-radius: 0.375rem;
-  font-size: 1rem;
-  width: 250px;
-}
-
-.search-box input:focus {
-  outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-}
-
-.btn {
-  padding: 0.5rem 1rem;
-  border-radius: 0.375rem;
-  text-decoration: none;
-  font-weight: 500;
-  transition: all 0.2s;
+.actions input {
   border: none;
-  cursor: pointer;
-  display: inline-block;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 4px 0;
+  font-size: 0.875rem;
+  width: 200px;
 }
 
-.btn-primary {
-  background: #3b82f6;
-  color: white;
+.actions input:focus {
+  outline: none;
+  border-bottom-color: #999;
 }
 
-.btn-primary:hover {
-  background: #2563eb;
+.actions a {
+  text-decoration: none;
+  color: #666;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s;
 }
 
-.btn-secondary {
-  background: #6b7280;
-  color: white;
-}
-
-.btn-secondary:hover:not(:disabled) {
-  background: #4b5563;
-}
-
-.btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+.actions a:hover {
+  border-bottom-color: #999;
+  color: #333;
 }
 
 .loading {
   text-align: center;
-  padding: 2rem;
-  color: #6b7280;
+  padding: 4rem 0;
+  color: #666;
 }
 
-.empty-state {
+.empty {
   text-align: center;
-  padding: 3rem;
-  color: #6b7280;
+  padding: 4rem 0;
 }
 
-.posts-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 1.5rem;
+.empty p {
+  color: #666;
   margin-bottom: 2rem;
 }
 
-.post-card {
-  background: white;
-  border-radius: 0.5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.post-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.post-cover {
-  height: 200px;
-  overflow: hidden;
-}
-
-.post-cover img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.post-content {
-  padding: 1.5rem;
-}
-
-.post-title {
-  margin-bottom: 0.5rem;
-}
-
-.post-title a {
-  color: #1f2937;
+.empty a {
   text-decoration: none;
-  font-size: 1.25rem;
-  font-weight: 600;
+  color: #1a1a1a;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #1a1a1a;
 }
 
-.post-title a:hover {
-  color: #3b82f6;
+.posts-list {
+  list-style: none;
+  padding: 0;
 }
 
-.post-excerpt {
-  color: #6b7280;
-  line-height: 1.6;
-  margin-bottom: 1rem;
+.post {
+  padding: 2rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.post:last-child {
+  border-bottom: none;
 }
 
 .post-meta {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.875rem;
-  color: #9ca3af;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.75rem;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.post-tag {
-  background: #f3f4f6;
-  color: #6b7280;
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.25rem;
-  font-size: 0.75rem;
+.post h2 {
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin: 0.5rem 0;
+  line-height: 1.2;
+}
+
+.post h2 a {
+  text-decoration: none;
+  color: #333;
+}
+
+.post h2 a:hover {
+  text-decoration: underline;
+}
+
+.post p {
+  color: #666;
+  margin: 0;
 }
 
 .pagination {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
-  margin-top: 2rem;
+  gap: 2rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid #f0f0f0;
 }
 
-.page-info {
-  color: #6b7280;
+.pagination button {
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.pagination button:hover:not(:disabled) {
+  color: #333;
+}
+
+.pagination button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  color: #666;
+  font-size: 0.875rem;
 }
 
 @media (max-width: 768px) {
-  .posts-header {
+  .header {
     flex-direction: column;
-    align-items: stretch;
+    gap: 1rem;
+    align-items: flex-start;
   }
   
-  .posts-actions {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  
-  .search-box input {
+  .actions {
     width: 100%;
+    justify-content: space-between;
   }
   
-  .posts-grid {
-    grid-template-columns: 1fr;
+  .actions input {
+    flex: 1;
   }
 }
 </style>

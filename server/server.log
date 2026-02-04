@@ -14,3 +14,417 @@ AuthApiError: Invalid login credentials
   status: 400,
   code: 'invalid_credentials'
 }
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%a%,content.ilike.%a%,tag::text.ilike.%a%))" (line 1, column 41)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%at%,content.ilike.%at%,tag::text.ilike.%at%))" (line 1, column 43)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%att%,content.ilike.%att%,tag::text.ilike.%att%))" (line 1, column 45)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%atte%,content.ilike.%atte%,tag::text.ilike.%atte%))" (line 1, column 47)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%atten%,content.ilike.%atten%,tag::text.ilike.%atten%))" (line 1, column 49)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%attent%,content.ilike.%attent%,tag::text.ilike.%attent%))" (line 1, column 51)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%attenti%,content.ilike.%attenti%,tag::text.ilike.%attenti%))" (line 1, column 53)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%attentio%,content.ilike.%attentio%,tag::text.ilike.%attentio%))" (line 1, column 55)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%attention%,content.ilike.%attention%,tag::text.ilike.%attention%))" (line 1, column 57)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%attention%,content.ilike.%attention%,tag::text.ilike.%attention%))" (line 1, column 57)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%attention i%,content.ilike.%attention i%,tag::text.ilike.%attention i%))" (line 1, column 61)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%attention id%,content.ilike.%attention id%,tag::text.ilike.%attention id%))" (line 1, column 63)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%attention id%,content.ilike.%attention id%,tag::text.ilike.%attention id%))" (line 1, column 63)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%attention id s%,content.ilike.%attention id s%,tag::text.ilike.%attention id s%))" (line 1, column 67)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%attention id sl%,content.ilike.%attention id sl%,tag::text.ilike.%attention id sl%))" (line 1, column 69)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%attention id sll%,content.ilike.%attention id sll%,tag::text.ilike.%attention id sll%))" (line 1, column 71)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%attention id slll%,content.ilike.%attention id slll%,tag::text.ilike.%attention id slll%))" (line 1, column 73)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%attention id sll%,content.ilike.%attention id sll%,tag::text.ilike.%attention id sll%))" (line 1, column 71)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%attention id sl%,content.ilike.%attention id sl%,tag::text.ilike.%attention id sl%))" (line 1, column 69)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%attention id s%,content.ilike.%attention id s%,tag::text.ilike.%attention id s%))" (line 1, column 67)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%attention id%,content.ilike.%attention id%,tag::text.ilike.%attention id%))" (line 1, column 63)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%attention id%,content.ilike.%attention id%,tag::text.ilike.%attention id%))" (line 1, column 63)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%attention idd%,content.ilike.%attention idd%,tag::text.ilike.%attention idd%))" (line 1, column 65)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%attention id%,content.ilike.%attention id%,tag::text.ilike.%attention id%))" (line 1, column 63)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%attention i%,content.ilike.%attention i%,tag::text.ilike.%attention i%))" (line 1, column 61)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%attention%,content.ilike.%attention%,tag::text.ilike.%attention%))" (line 1, column 57)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%attention d%,content.ilike.%attention d%,tag::text.ilike.%attention d%))" (line 1, column 61)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%attention%,content.ilike.%attention%,tag::text.ilike.%attention%))" (line 1, column 57)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%attention%,content.ilike.%attention%,tag::text.ilike.%attention%))" (line 1, column 57)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%attentio%,content.ilike.%attentio%,tag::text.ilike.%attentio%))" (line 1, column 55)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%attenti%,content.ilike.%attenti%,tag::text.ilike.%attenti%))" (line 1, column 53)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%attent%,content.ilike.%attent%,tag::text.ilike.%attent%))" (line 1, column 51)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%atte%,content.ilike.%atte%,tag::text.ilike.%atte%))" (line 1, column 47)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%atten%,content.ilike.%atten%,tag::text.ilike.%atten%))" (line 1, column 49)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%att%,content.ilike.%att%,tag::text.ilike.%att%))" (line 1, column 45)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%a%,content.ilike.%a%,tag::text.ilike.%a%))" (line 1, column 41)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%at%,content.ilike.%at%,tag::text.ilike.%at%))" (line 1, column 43)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%a%,content.ilike.%a%,tag::text.ilike.%a%))" (line 1, column 41)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%at%,content.ilike.%at%,tag::text.ilike.%at%))" (line 1, column 43)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%att%,content.ilike.%att%,tag::text.ilike.%att%))" (line 1, column 45)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%atte%,content.ilike.%atte%,tag::text.ilike.%atte%))" (line 1, column 47)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%atten%,content.ilike.%atten%,tag::text.ilike.%atten%))" (line 1, column 49)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%attent%,content.ilike.%attent%,tag::text.ilike.%attent%))" (line 1, column 51)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%attenti%,content.ilike.%attenti%,tag::text.ilike.%attenti%))" (line 1, column 53)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%attentio%,content.ilike.%attentio%,tag::text.ilike.%attentio%))" (line 1, column 55)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%attention%,content.ilike.%attention%,tag::text.ilike.%attention%))" (line 1, column 57)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%attention%,content.ilike.%attention%,tag::text.ilike.%attention%))" (line 1, column 57)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%attention l%,content.ilike.%attention l%,tag::text.ilike.%attention l%))" (line 1, column 61)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%attention%,content.ilike.%attention%,tag::text.ilike.%attention%))" (line 1, column 57)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%attention%,content.ilike.%attention%,tag::text.ilike.%attention%))" (line 1, column 57)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%attentio%,content.ilike.%attentio%,tag::text.ilike.%attentio%))" (line 1, column 55)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%attenti%,content.ilike.%attenti%,tag::text.ilike.%attenti%))" (line 1, column 53)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%attent%,content.ilike.%attent%,tag::text.ilike.%attent%))" (line 1, column 51)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%atten%,content.ilike.%atten%,tag::text.ilike.%atten%))" (line 1, column 49)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%atte%,content.ilike.%atte%,tag::text.ilike.%atte%))" (line 1, column 47)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%att%,content.ilike.%att%,tag::text.ilike.%att%))" (line 1, column 45)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%at%,content.ilike.%at%,tag::text.ilike.%at%))" (line 1, column 43)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%a%,content.ilike.%a%,tag::text.ilike.%a%))" (line 1, column 41)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%a%,content.ilike.%a%,tag::text.ilike.%a%))" (line 1, column 41)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%at%,content.ilike.%at%,tag::text.ilike.%at%))" (line 1, column 43)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%att%,content.ilike.%att%,tag::text.ilike.%att%))" (line 1, column 45)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%atte%,content.ilike.%atte%,tag::text.ilike.%atte%))" (line 1, column 47)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%atten%,content.ilike.%atten%,tag::text.ilike.%atten%))" (line 1, column 49)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%attent%,content.ilike.%attent%,tag::text.ilike.%attent%))" (line 1, column 51)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%atten%,content.ilike.%atten%,tag::text.ilike.%atten%))" (line 1, column 49)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%atte%,content.ilike.%atte%,tag::text.ilike.%atte%))" (line 1, column 47)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%att%,content.ilike.%att%,tag::text.ilike.%att%))" (line 1, column 45)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%at%,content.ilike.%at%,tag::text.ilike.%at%))" (line 1, column 43)'
+}
+{
+  code: 'PGRST100',
+  details: 'unexpected ":" expecting letter, digit, "-", "->>", "->" or delimiter (.)',
+  hint: null,
+  message: '"failed to parse logic tree ((title.ilike.%a%,content.ilike.%a%,tag::text.ilike.%a%))" (line 1, column 41)'
+}
