@@ -1,11 +1,11 @@
 <template>
-  <div class="home">
+  <div class="text-center py-16">
     <div class="hero">
-      <h1>Tiny Blog</h1>
-      <p>A simple blog platform.</p>
-      <div class="actions">
-        <router-link to="/posts">Posts</router-link>
-        <router-link v-if="!isAuthenticated" to="/register">Get Started</router-link>
+      <h1 class="text-5xl font-light mb-4 text-gray-900">Tiny Blog</h1>
+      <p class="text-lg text-gray-500 mb-12 max-w-md mx-auto">A simple blog platform.</p>
+      <div class="flex gap-8 justify-center">
+        <router-link to="/posts" class="text-xs text-gray-500 uppercase tracking-wide border-b border-transparent transition-all hover:border-gray-400 hover:text-gray-900">Posts</router-link>
+        <router-link v-if="!isAuthenticated" to="/register" class="text-xs text-gray-500 uppercase tracking-wide border-b border-transparent transition-all hover:border-gray-400 hover:text-gray-900">Get Started</router-link>
       </div>
     </div>
   </div>
@@ -28,60 +28,17 @@ export default {
 </script>
 
 <style scoped>
-.home {
-  text-align: center;
-  padding: 4rem 0;
-}
-
-.hero h1 {
-  font-size: 3rem;
-  font-weight: 300;
-  margin-bottom: 1rem;
-  color: #333;
-}
-
-.hero p {
-  font-size: 1.125rem;
-  color: #666;
-  margin-bottom: 3rem;
-  max-width: 400px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.actions {
-  display: flex;
-  gap: 2rem;
-  justify-content: center;
-}
-
-.actions a {
-  text-decoration: none;
-  color: #666;
-  font-size: 0.875rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  border-bottom: 1px solid transparent;
-  transition: all 0.2s;
-}
-
-.actions a:hover {
-  border-bottom-color: #999;
-  color: #333;
-}
-
 @media (max-width: 768px) {
   .hero h1 {
-    font-size: 2rem;
+    @apply text-4xl;
   }
   
   .hero p {
-    font-size: 1rem;
+    @apply text-base;
   }
   
   .actions {
-    flex-direction: column;
-    gap: 1rem;
+    @apply flex-col gap-4;
   }
 }
 </style>

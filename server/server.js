@@ -144,8 +144,8 @@ app.get('/posts', async (req, res) => {
 
     if (q && String(q).trim()) {
       const term = String(q).trim();
-      // search in title, content, and tag (convert JSON to text)
-      query = query.or(`title.ilike.%${term}%,content.ilike.%${term}%,tag::text.ilike.%${term}%`);
+      // search in title and content
+      query = query.or(`title.ilike.%${term}%`).or(`content.ilike.%${term}%`);
     }
 
     const { data, error, count } = await query;

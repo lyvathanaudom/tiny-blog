@@ -1,46 +1,46 @@
 <template>
-  <div class="post-detail">
-    <div v-if="loading" class="loading">
+  <div class="max-w-5xl mx-auto">
+    <div v-if="loading" class="text-center py-8 text-gray-500">
       Loading post...
     </div>
 
-    <div v-else-if="error" class="error">
+    <div v-else-if="error" class="text-center py-12 text-red-600">
       {{ error }}
     </div>
 
-    <article v-else-if="post" class="post-article">
-      <header class="post-header">
-        <h1 class="post-title">{{ post.title }}</h1>
-        <div class="post-meta">
+    <article v-else-if="post" class="bg-white rounded-lg shadow-sm overflow-hidden">
+      <header class="p-8 pb-4 border-b border-gray-100">
+        <h1 class="text-4xl font-bold text-gray-900 mb-4 leading-tight">{{ post.title }}</h1>
+        <div class="flex items-center gap-4 text-gray-500 text-sm">
           <time :datetime="post.created_at">{{ formatDate(post.created_at) }}</time>
-          <span v-if="post.tag" class="post-tag">{{ post.tag }}</span>
+          <span v-if="post.tag" class="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">{{ post.tag }}</span>
         </div>
       </header>
 
-      <div v-if="post.cover" class="post-cover">
-        <img :src="post.cover" :alt="post.title" />
+      <div v-if="post.cover" class="w-full h-96 overflow-hidden">
+        <img :src="post.cover" :alt="post.title" class="w-full h-full object-cover" />
       </div>
 
-      <div class="post-content" v-html="post.content"></div>
+      <div class="p-8 leading-relaxed text-gray-700 prose prose-lg max-w-none" v-html="post.content"></div>
 
-      <footer class="post-actions">
-        <router-link to="/posts" class="btn btn-secondary">
+      <footer class="px-8 py-4 border-t border-gray-100 flex justify-between items-center flex-wrap gap-4">
+        <router-link to="/posts" class="px-4 py-2 bg-gray-800 text-white rounded-sm font-medium hover:bg-gray-600 transition-colors no-underline">
           ← Back to Posts
         </router-link>
-        <div v-if="isAuthenticated" class="action-buttons">
-          <router-link :to="`/edit/${post.id}`" class="btn btn-primary">
+        <div v-if="isAuthenticated" class="flex gap-2">
+          <router-link :to="`/edit/${post.id}`" class="px-4 py-2 bg-gray-800 text-white rounded-sm font-medium hover:bg-gray-600 transition-colors no-underline">
             Edit
           </router-link>
-          <button @click="confirmDelete" class="btn btn-danger">
+          <button @click="confirmDelete" class="px-4 py-2 bg-indigo-500 text-white rounded-sm font-medium hover:bg-red-600 transition-colors border-none cursor-pointer">
             Delete
           </button>
         </div>
       </footer>
     </article>
 
-    <div v-else class="not-found">
-      <h2>Post not found</h2>
-      <router-link to="/posts" class="btn btn-primary">
+    <div v-else class="text-center py-12 text-gray-500">
+      <h2 class="text-2xl font-light mb-4">Post not found</h2>
+      <router-link to="/posts" class="px-4 py-2 bg-gray-800 text-white rounded-sm font-medium hover:bg-gray-600 transition-colors no-underline">
         Back to Posts
       </router-link>
     </div>
@@ -118,115 +118,31 @@ export default {
 </script>
 
 <style scoped>
-.post-detail {
-  max-width: 800px;
-  margin: 0 auto;
-}
+/* Using Tailwind classes in template, no custom CSS needed */
 
-.loading {
-  text-align: center;
-  padding: 2rem;
-  color: #6b7280;
-}
-
-.error, .not-found {
-  text-align: center;
-  padding: 3rem;
-  color: #dc2626;
-}
-
-.not-found {
-  color: #6b7280;
-}
-
-.post-article {
-  background: white;
-  border-radius: 0.5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-}
-
-.post-header {
-  padding: 2rem 2rem 1rem;
-  border-bottom: 1px solid #e5e7eb;
-}
-
-.post-title {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: #1f2937;
-  margin-bottom: 1rem;
-  line-height: 1.2;
-}
-
-.post-meta {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  color: #6b7280;
-  font-size: 0.875rem;
-}
-
-.post-tag {
-  background: #f3f4f6;
-  color: #6b7280;
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.25rem;
-  font-size: 0.75rem;
-}
-
-.post-cover {
-  width: 100%;
-  height: 400px;
-  overflow: hidden;
-}
-
-.post-cover img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.post-content {
-  padding: 2rem;
-  line-height: 1.8;
-  color: #374151;
-}
-
-.post-content :deep(h1),
-.post-content :deep(h2),
-.post-content :deep(h3),
-.post-content :deep(h4),
-.post-content :deep(h5),
-.post-content :deep(h6) {
-  margin: 1.5rem 0 1rem;
+/* Override prose styles to match our design */
+:deep(.prose h1),
+:deep(.prose h2),
+:deep(.prose h3),
+:deep(.prose h4),
+:deep(.prose h5),
+:deep(.prose h6) {
   color: #1f2937;
   font-weight: 600;
 }
 
-.post-content :deep(h1) { font-size: 2rem; }
-.post-content :deep(h2) { font-size: 1.5rem; }
-.post-content :deep(h3) { font-size: 1.25rem; }
+:deep(.prose h1) { font-size: 2rem; }
+:deep(.prose h2) { font-size: 1.5rem; }
+:deep(.prose h3) { font-size: 1.25rem; }
 
-.post-content :deep(p) {
-  margin-bottom: 1rem;
-}
-
-.post-content :deep(ul),
-.post-content :deep(ol) {
-  margin-bottom: 1rem;
-  padding-left: 2rem;
-}
-
-.post-content :deep(blockquote) {
+:deep(.prose blockquote) {
   border-left: 4px solid #3b82f6;
   padding-left: 1rem;
-  margin: 1rem 0;
   font-style: italic;
   color: #6b7280;
 }
 
-.post-content :deep(code) {
+:deep(.prose code) {
   background: #f3f4f6;
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
@@ -234,93 +150,17 @@ export default {
   font-size: 0.875rem;
 }
 
-.post-content :deep(pre) {
+:deep(.prose pre) {
   background: #1f2937;
   color: #f9fafb;
   padding: 1rem;
   border-radius: 0.5rem;
   overflow-x: auto;
-  margin: 1rem 0;
 }
 
-.post-content :deep(pre code) {
+:deep(.prose pre code) {
   background: none;
   padding: 0;
-}
-
-.post-actions {
-  padding: 1rem 2rem;
-  border-top: 1px solid #e5e7eb;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.action-buttons {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.btn {
-  padding: 0.5rem 1rem;
-  border-radius: 0.375rem;
-  text-decoration: none;
-  font-weight: 500;
-  transition: all 0.2s;
-  border: none;
-  cursor: pointer;
-  display: inline-block;
-}
-
-.btn-primary {
-  background: #3b82f6;
-  color: white;
-}
-
-.btn-primary:hover {
-  background: #2563eb;
-}
-
-.btn-secondary {
-  background: #6b7280;
-  color: white;
-}
-
-.btn-secondary:hover {
-  background: #4b5563;
-}
-
-.btn-danger {
-  background: #ef4444;
-  color: white;
-}
-
-.btn-danger:hover {
-  background: #dc2626;
-}
-
-@media (max-width: 768px) {
-  .post-title {
-    font-size: 2rem;
-  }
-  
-  .post-cover {
-    height: 250px;
-  }
-  
-  .post-content {
-    padding: 1rem;
-  }
-  
-  .post-actions {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  
-  .action-buttons {
-    flex-direction: column;
-  }
+  color: inherit;
 }
 </style>

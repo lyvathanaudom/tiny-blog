@@ -1,46 +1,57 @@
 <template>
-  <div class="posts">
-    <div class="header">
-      <h1>Posts</h1>
-      <div class="actions">
+  <div class="posts p-0">
+    <div class="flex justify-between items-center mb-12 border-b border-gray-100 pb-8">
+      <h1 class="text-3xl font-light m-0">Posts</h1>
+      <div class="flex gap-4 items-center">
         <input
           v-model="searchQuery"
           type="text"
-          placeholder="Search..."
+          placeholder="Search posts..."
           @input="handleSearch"
+          @keyup.enter="handleSearchImmediate"
+          class="border border-b border-gray-300 px-2 py-1 text-sm w-48 rounded focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:ring-opacity-10"
         />
-        <router-link v-if="isAuthenticated" to="/create">Create</router-link>
+        <router-link v-if="isAuthenticated" to="/create" class="text-gray-500 text-xs uppercase tracking-wide border-b border-transparent transition-all hover:border-gray-400 hover:text-gray-900">Create</router-link>
       </div>
     </div>
 
-    <div v-if="loading" class="loading">
+    <div v-if="loading" class="text-center py-16 text-gray-500">
       Loading...
     </div>
 
-    <div v-else-if="posts.length === 0" class="empty">
-      <p>No posts found.</p>
-      <router-link v-if="isAuthenticated && !searchQuery" to="/create">Create first post</router-link>
+    <div v-else-if="posts.length === 0" class="text-center py-16">
+      <p class="text-gray-500 mb-8">
+        {{ searchQuery ? `No posts found for "${searchQuery}"` : 'No posts found.' }}
+      </p>
+      <router-link v-if="isAuthenticated && !searchQuery" to="/create" class="text-gray-900 text-xs uppercase tracking-wide border-b border-gray-900">Create first post</router-link>
+      <div 
+        v-else-if="searchQuery" 
+        @click="searchQuery = ''; handleSearchImmediate()" 
+        class="text-gray-800 text-sm hover:text-gray-600 transition-colors border-none cursor-pointer"
+      >
+        Clear Search
+      </div>
     </div>
 
-    <div v-else class="posts-list">
-      <article v-for="post in posts" :key="post.id" class="post">
-        <div class="post-meta">
+    <div v-else class="list-none p-0">
+      <article v-for="post in posts" :key="post.id" class="py-8 border-b border-gray-100 last:border-b-0">
+        <div class="flex gap-4 mb-2 text-xs text-gray-400 uppercase tracking-wide">
           <time>{{ formatDate(post.created_at) }}</time>
           <span v-if="post.tag">{{ post.tag }}</span>
         </div>
-        <h2>
-          <router-link :to="`/posts/${post.slug || post.id}`">
+        <h2 class="text-2xl font-light my-2 leading-tight">
+          <router-link :to="`/posts/${post.slug || post.id}`" class="text-gray-900 no-underline hover:underline">
             {{ post.title }}
           </router-link>
         </h2>
-        <p>{{ getExcerpt(post.content) }}</p>
+        <p class="text-gray-500 m-0">{{ getExcerpt(post.content) }}</p>
       </article>
     </div>
 
-    <div v-if="totalPages > 1" class="pagination">
-      <button @click="previousPage" :disabled="currentPage === 1">Previous</button>
-      <span>{{ currentPage }} / {{ totalPages }}</span>
-      <button @click="nextPage" :disabled="currentPage === totalPages">Next</button>
+    <div v-if="totalPages > 1" class="flex justify-center items-center gap-8 mt-12 pt-8 border-t border-gray-100">
+      <button @click="previousPage" :disabled="currentPage === 1" class="bg-none border-none text-gray-500 text-xs uppercase tracking-wide cursor-pointer p-0 hover:text-gray-900 disabled:opacity-30 disabled:cursor-not-allowed">Previous</button>
+      <span class="text-gray-500 text-xs">{{ currentPage }} / {{ totalPages }}</span>
+      <button @click="nextPage" :disabled="currentPage === totalPages" class="bg-none border-none text-gray-500 text-xs uppercase tracking-wide cursor-pointer p-0 hover:text-gray-900 disabled:opacity-30 disabled:cursor-not-allowed">Next</button>
     </div>
   </div>
 </template>
@@ -92,6 +103,9 @@ export default {
       return rangeWithDots
     })
 
+    // Debounce timer for search
+    let searchTimeout = null
+
     const fetchPosts = async () => {
       loading.value = true
       try {
@@ -115,6 +129,23 @@ export default {
     }
 
     const handleSearch = () => {
+      // Clear existing timeout
+      if (searchTimeout) {
+        clearTimeout(searchTimeout)
+      }
+      
+      // Set new timeout to debounce search
+      searchTimeout = setTimeout(() => {
+        currentPage.value = 1
+        fetchPosts()
+      }, 300) // 300ms delay
+    }
+
+    // Immediate search for Enter key
+    const handleSearchImmediate = () => {
+      if (searchTimeout) {
+        clearTimeout(searchTimeout)
+      }
       currentPage.value = 1
       fetchPosts()
     }
@@ -161,6 +192,7 @@ export default {
       searchQuery,
       isAuthenticated,
       handleSearch,
+      handleSearchImmediate,
       previousPage,
       nextPage,
       getExcerpt,
@@ -171,178 +203,17 @@ export default {
 </script>
 
 <style scoped>
-.posts {
-  padding: 0;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 3rem;
-  border-bottom: 1px solid #f0f0f0;
-  padding-bottom: 2rem;
-}
-
-.header h1 {
-  font-size: 2rem;
-  font-weight: 300;
-  margin: 0;
-}
-
-.actions {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-}
-
-.actions input {
-  border: none;
-  border-bottom: 1px solid #e0e0e0;
-  padding: 4px 0;
-  font-size: 0.875rem;
-  width: 200px;
-}
-
-.actions input:focus {
-  outline: none;
-  border-bottom-color: #999;
-}
-
-.actions a {
-  text-decoration: none;
-  color: #666;
-  font-size: 0.875rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  border-bottom: 1px solid transparent;
-  transition: all 0.2s;
-}
-
-.actions a:hover {
-  border-bottom-color: #999;
-  color: #333;
-}
-
-.loading {
-  text-align: center;
-  padding: 4rem 0;
-  color: #666;
-}
-
-.empty {
-  text-align: center;
-  padding: 4rem 0;
-}
-
-.empty p {
-  color: #666;
-  margin-bottom: 2rem;
-}
-
-.empty a {
-  text-decoration: none;
-  color: #1a1a1a;
-  font-size: 0.875rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  border-bottom: 1px solid #1a1a1a;
-}
-
-.posts-list {
-  list-style: none;
-  padding: 0;
-}
-
-.post {
-  padding: 2rem 0;
-  border-bottom: 1px solid #f0f0f0;
-}
-
-.post:last-child {
-  border-bottom: none;
-}
-
-.post-meta {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 0.5rem;
-  font-size: 0.75rem;
-  color: #999;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.post h2 {
-  font-size: 1.5rem;
-  font-weight: 300;
-  margin: 0.5rem 0;
-  line-height: 1.2;
-}
-
-.post h2 a {
-  text-decoration: none;
-  color: #333;
-}
-
-.post h2 a:hover {
-  text-decoration: underline;
-}
-
-.post p {
-  color: #666;
-  margin: 0;
-}
-
-.pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2rem;
-  margin-top: 3rem;
-  padding-top: 2rem;
-  border-top: 1px solid #f0f0f0;
-}
-
-.pagination button {
-  background: none;
-  border: none;
-  color: #666;
-  font-size: 0.875rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  cursor: pointer;
-  padding: 0;
-}
-
-.pagination button:hover:not(:disabled) {
-  color: #333;
-}
-
-.pagination button:disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
-}
-
-.pagination span {
-  color: #666;
-  font-size: 0.875rem;
-}
-
 @media (max-width: 768px) {
   .header {
-    flex-direction: column;
-    gap: 1rem;
-    align-items: flex-start;
+    @apply flex-col gap-4 items-start;
   }
   
   .actions {
-    width: 100%;
-    justify-content: space-between;
+    @apply w-full justify-between;
   }
   
   .actions input {
-    flex: 1;
+    @apply flex-1;
   }
 }
 </style>

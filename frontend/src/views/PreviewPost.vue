@@ -1,41 +1,41 @@
 <template>
-  <div class="preview-post">
-    <div class="preview-header">
-      <h1>Post Preview</h1>
-      <div class="preview-actions">
-        <button @click="closePreview" class="btn btn-secondary">Close Preview</button>
-        <button @click="editPost" class="btn btn-primary">Edit Post</button>
+  <div class="max-w-4xl mx-auto p-8">
+    <div class="flex justify-between items-center mb-8 pb-4 border-b border-gray-200 flex-wrap gap-4">
+      <h1 class="text-3xl font-light text-gray-900 m-0">Post Preview</h1>
+      <div class="flex gap-2">
+        <button @click="closePreview" class="px-4 py-2 bg-gray-500 text-white rounded-sm font-medium hover:bg-gray-600 transition-colors border-none cursor-pointer">Close Preview</button>
+        <button @click="editPost" class="px-4 py-2 bg-gray-800 text-white rounded-sm font-medium hover:bg-gray-600 transition-colors border-none cursor-pointer">Edit Post</button>
       </div>
     </div>
 
-    <article v-if="previewData" class="post-article">
-      <header class="post-header">
-        <h1 class="post-title">{{ previewData.title }}</h1>
-        <div class="post-meta">
+    <article v-if="previewData" class="bg-white rounded-lg shadow-sm overflow-hidden">
+      <header class="p-8 pb-4 border-b border-gray-100">
+        <h1 class="text-4xl font-bold text-gray-900 mb-4 leading-tight">{{ previewData.title }}</h1>
+        <div class="flex items-center gap-4 text-gray-500 text-sm">
           <time :datetime="previewData.date || previewData.created_at">
             {{ formatDate(previewData.date || previewData.created_at) }}
           </time>
-          <span v-if="previewData.tag" class="post-tag">{{ previewData.tag }}</span>
+          <span v-if="previewData.tag" class="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">{{ previewData.tag }}</span>
         </div>
       </header>
 
-      <div v-if="previewData.cover" class="post-cover">
-        <img :src="previewData.cover" :alt="previewData.title" />
+      <div v-if="previewData.cover" class="w-full h-96 overflow-hidden">
+        <img :src="previewData.cover" :alt="previewData.title" class="w-full h-full object-cover" />
       </div>
 
-      <div class="post-content" v-html="previewData.content"></div>
+      <div class="p-8 leading-relaxed text-gray-700 prose prose-lg max-w-none" v-html="previewData.content"></div>
 
-      <footer class="post-footer">
-        <p class="preview-note">
+      <footer class="px-8 py-4 border-t border-gray-100">
+        <p class="text-gray-500 italic text-center m-0">
           This is a preview. The post has not been published yet.
         </p>
       </footer>
     </article>
 
-    <div v-else class="no-preview">
-      <h2>No Preview Data</h2>
-      <p>Please go back and edit a post to see the preview.</p>
-      <button @click="closePreview" class="btn btn-primary">Back to Editor</button>
+    <div v-else class="text-center py-12 text-gray-500">
+      <h2 class="text-2xl font-light mb-4">No Preview Data</h2>
+      <p class="mb-6">Please go back and edit a post to see the preview.</p>
+      <button @click="closePreview" class="px-4 py-2 bg-gray-800 text-white rounded-sm font-medium hover:bg-gray-600 transition-colors border-none cursor-pointer">Back to Editor</button>
     </div>
   </div>
 </template>
@@ -97,121 +97,31 @@ export default {
 </script>
 
 <style scoped>
-.preview-post {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem;
-}
+/* Using Tailwind classes in template, no custom CSS needed */
 
-.preview-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid #e5e7eb;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.preview-header h1 {
-  color: #1f2937;
-  margin: 0;
-}
-
-.preview-actions {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.post-article {
-  background: white;
-  border-radius: 0.5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-}
-
-.post-header {
-  padding: 2rem 2rem 1rem;
-  border-bottom: 1px solid #e5e7eb;
-}
-
-.post-title {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: #1f2937;
-  margin-bottom: 1rem;
-  line-height: 1.2;
-}
-
-.post-meta {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  color: #6b7280;
-  font-size: 0.875rem;
-}
-
-.post-tag {
-  background: #f3f4f6;
-  color: #6b7280;
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.25rem;
-  font-size: 0.75rem;
-}
-
-.post-cover {
-  width: 100%;
-  height: 400px;
-  overflow: hidden;
-}
-
-.post-cover img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.post-content {
-  padding: 2rem;
-  line-height: 1.8;
-  color: #374151;
-}
-
-.post-content :deep(h1),
-.post-content :deep(h2),
-.post-content :deep(h3),
-.post-content :deep(h4),
-.post-content :deep(h5),
-.post-content :deep(h6) {
-  margin: 1.5rem 0 1rem;
+/* Override prose styles to match our design */
+:deep(.prose h1),
+:deep(.prose h2),
+:deep(.prose h3),
+:deep(.prose h4),
+:deep(.prose h5),
+:deep(.prose h6) {
   color: #1f2937;
   font-weight: 600;
 }
 
-.post-content :deep(h1) { font-size: 2rem; }
-.post-content :deep(h2) { font-size: 1.5rem; }
-.post-content :deep(h3) { font-size: 1.25rem; }
+:deep(.prose h1) { font-size: 2rem; }
+:deep(.prose h2) { font-size: 1.5rem; }
+:deep(.prose h3) { font-size: 1.25rem; }
 
-.post-content :deep(p) {
-  margin-bottom: 1rem;
-}
-
-.post-content :deep(ul),
-.post-content :deep(ol) {
-  margin-bottom: 1rem;
-  padding-left: 2rem;
-}
-
-.post-content :deep(blockquote) {
+:deep(.prose blockquote) {
   border-left: 4px solid #3b82f6;
   padding-left: 1rem;
-  margin: 1rem 0;
   font-style: italic;
   color: #6b7280;
 }
 
-.post-content :deep(code) {
+:deep(.prose code) {
   background: #f3f4f6;
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
@@ -219,97 +129,17 @@ export default {
   font-size: 0.875rem;
 }
 
-.post-content :deep(pre) {
+:deep(.prose pre) {
   background: #1f2937;
   color: #f9fafb;
   padding: 1rem;
   border-radius: 0.5rem;
   overflow-x: auto;
-  margin: 1rem 0;
 }
 
-.post-content :deep(pre code) {
+:deep(.prose pre code) {
   background: none;
   padding: 0;
-}
-
-.post-footer {
-  padding: 1rem 2rem;
-  border-top: 1px solid #e5e7eb;
-}
-
-.preview-note {
-  color: #6b7280;
-  font-style: italic;
-  text-align: center;
-  margin: 0;
-}
-
-.no-preview {
-  text-align: center;
-  padding: 3rem;
-  color: #6b7280;
-}
-
-.no-preview h2 {
-  color: #1f2937;
-  margin-bottom: 1rem;
-}
-
-.btn {
-  padding: 0.5rem 1rem;
-  border-radius: 0.375rem;
-  font-weight: 500;
-  transition: all 0.2s;
-  text-decoration: none;
-  display: inline-block;
-  cursor: pointer;
-  border: none;
-}
-
-.btn-primary {
-  background: #3b82f6;
-  color: white;
-}
-
-.btn-primary:hover {
-  background: #2563eb;
-}
-
-.btn-secondary {
-  background: #6b7280;
-  color: white;
-}
-
-.btn-secondary:hover {
-  background: #4b5563;
-}
-
-@media (max-width: 768px) {
-  .preview-post {
-    padding: 1rem;
-  }
-  
-  .preview-header {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 1rem;
-  }
-  
-  .preview-actions {
-    justify-content: center;
-  }
-  
-  .post-title {
-    font-size: 2rem;
-  }
-  
-  .post-cover {
-    height: 250px;
-  }
-  
-  .post-content {
-    padding: 1rem;
-  }
+  color: inherit;
 }
 </style>
